@@ -5,6 +5,7 @@ class CourseModel {
   final int durationSeconds;
   final String description;
   final String videoUrl;
+
   CourseModel({
     required this.id,
     required this.title,
@@ -13,4 +14,11 @@ class CourseModel {
     required this.description,
     required this.videoUrl,
   });
+  CourseModel.fromJson(Map<String, dynamic> json)
+      : id = json['id'],
+        title = json['title'],
+        thumbnailUrl = json['thumbnailUrl'],
+        durationSeconds = json['durationSeconds'],
+        description = json['description'],
+        videoUrl = json['videoUrl'];
 }
