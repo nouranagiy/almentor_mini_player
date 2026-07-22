@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 
 class Assets {
   Assets._();
+
+  static const String courses = 'assets/data/courses.json';
 }
 
 class AssetGenImage {
