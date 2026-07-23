@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/course_provider.dart';
 import '../widgets/course_card.dart';
+import 'package:almentor_mini_player/screens/course_details_screen.dart';
 class CourseListScreen extends StatefulWidget {
   const CourseListScreen({super.key});
   @override
@@ -25,10 +26,18 @@ class _CourseListScreenState extends State<CourseListScreen> {
         body: ListView.builder(
             itemCount: courses.length,
             itemBuilder: (context, index) {
-        // جيبي الكورس الحالي
-        return CourseCard(
-        course: courses[index],
-    );
+              final course = courses[index];
+              return CourseCard(
+                course: course,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CourseDetailScreen(course: course),
+                    ),
+                  );
+                },
+              );
   },
     ),
     );

@@ -38,6 +38,8 @@ dependencies:
   video_player: ^2.9.1
   shared_preferences: ^2.3.2
   connectivity_plus: ^6.0.5
+  chewie: ^1.14.1
+
 
 dev_dependencies:
   flutter_test:
