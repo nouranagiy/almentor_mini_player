@@ -1,21 +1,24 @@
+import 'package:almentor_mini_player/models/course_model.dart';
 import 'package:flutter/material.dart';
-import '../models/course_model.dart';
 class CourseCard extends StatelessWidget {
   final CourseModel course;
   final VoidCallback onTap;
+  final double progress;
   const CourseCard({
     super.key,
     required this.course,
     required this.onTap,
+    required this.progress,
   });
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(
+      margin: EdgeInsets.symmetric(
         horizontal: 12,
         vertical: 8,
       ),
       child: ListTile(
+        onTap: onTap,
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.network(
@@ -27,17 +30,34 @@ class CourseCard extends StatelessWidget {
         ),
         title: Text(
           course.title,
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.bold,
           ),
         ),
-        subtitle: Text(
-          "${course.durationSeconds} sec",
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("${course.durationSeconds} sec"),
+            SizedBox(height: 6),
+            LinearProgressIndicator(
+              value: progress,
+              backgroundColor: Colors.grey,
+              color: Colors.blue,
+            ),
+            SizedBox(height: 4),
+            Text(
+              "${(progress * 100).toStringAsFixed(0)}% watched",
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        trailing: const Icon(
+        trailing: Icon(
           Icons.play_circle_fill,
         ),
-        onTap: onTap,
       ),
     );
   }

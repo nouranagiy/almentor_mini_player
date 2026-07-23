@@ -19,9 +19,10 @@ class _CourseListScreenState extends State<CourseListScreen> {
   Widget build(BuildContext context) {
     final provider = context.watch<CourseProvider>();
     final courses = provider.courses;
+    final progress = provider.progress;
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Courses"),
+          title: Text("Courses"),
         ),
         body: ListView.builder(
             itemCount: courses.length,
@@ -29,16 +30,17 @@ class _CourseListScreenState extends State<CourseListScreen> {
               final course = courses[index];
               return CourseCard(
                 course: course,
-                onTap: () {
-                  Navigator.push(
+                progress: progress[course.id] ?? 0,
+                onTap: () async {
+                 await Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => CourseDetailScreen(course: course),
                     ),
                   );
-                },
+                 await context.read<CourseProvider>().loadCourses();                },
               );
-  },
+              },
     ),
     );
   }
