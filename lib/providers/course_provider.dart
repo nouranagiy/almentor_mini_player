@@ -6,7 +6,7 @@ class CourseProvider extends ChangeNotifier {
     final CourseService courseService = CourseService();
     final ProgressService progressService = ProgressService();
     List<CourseModel> _courses = [];
-    Map<String, double> _progress = {};
+    final Map<String, double> _progress = {};
     List<CourseModel> get courses => _courses;
     Map<String, double> get progress => _progress;
     Future<void> loadCourses() async {

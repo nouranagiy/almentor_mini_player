@@ -38,7 +38,8 @@ class _CourseListScreenState extends State<CourseListScreen> {
                       builder: (context) => CourseDetailScreen(course: course),
                     ),
                   );
-                 await context.read<CourseProvider>().loadCourses();                },
+                 await context.read<CourseProvider>().loadCourses();
+                 },
               );
               },
     ),

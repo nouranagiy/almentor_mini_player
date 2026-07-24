@@ -25,9 +25,13 @@ class _CourseDetailScreenState extends State<CourseDetailScreen> {
     initializeVideo();
   }
   Future<void> initializeVideo() async {
-    try {
+    videoController?.dispose();
+    chewieController?.dispose();
+    setState(() {
       isLoading = true;
       hasError = false;
+    });
+    try {
       videoController = VideoPlayerController.networkUrl(
         Uri.parse(widget.course.videoUrl),
       );
