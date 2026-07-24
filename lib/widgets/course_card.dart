@@ -17,46 +17,74 @@ class CourseCard extends StatelessWidget {
         horizontal: 12,
         vertical: 8,
       ),
-      child: ListTile(
+      child: InkWell(
         onTap: onTap,
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-            course.thumbnailUrl,
-            width: 90,
-            height: 60,
-            fit: BoxFit.cover,
-          ),
-        ),
-        title: Text(
-          course.title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("${course.durationSeconds} sec"),
-            SizedBox(height: 6),
-            LinearProgressIndicator(
-              value: progress,
-              backgroundColor: Colors.grey,
-              color: Colors.blue,
-            ),
-            SizedBox(height: 4),
-            Text(
-              "${(progress * 100).toStringAsFixed(0)}% watched",
-              style: TextStyle(
-                fontSize: 12,
-                color: Colors.grey,
-                fontWeight: FontWeight.bold,
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: EdgeInsets.all(12.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.network(
+                  course.thumbnailUrl,
+                  width: 90,
+                  height: 60,
+                  fit: BoxFit.cover,
+                ),
               ),
-            ),
-          ],
-        ),
-        trailing: Icon(
-          Icons.play_circle_fill,
+              SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      course.title,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      "${course.durationSeconds} sec",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    SizedBox(height: 8),
+                    LinearProgressIndicator(
+                      value: progress,
+                      backgroundColor: Colors.grey[300],
+                      color: Colors.blue,
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      "${(progress * 100).toStringAsFixed(0)}% watched",
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(width: 8),
+              Align(
+                alignment: Alignment.center,
+                child: Icon(
+                  Icons.play_circle_fill,
+                  size: 30,
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
